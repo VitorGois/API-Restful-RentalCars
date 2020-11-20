@@ -9,6 +9,8 @@ public class Car {
     private String model;
     private String producer;
     private int valuePerDay;
+    private Client client;
+    
 
     public String getLicensePlate() {
         return licensePlate;
@@ -58,12 +60,36 @@ public class Car {
         this.producer = producer;
     }
 
-    public int getValueperday() {
+    public String getDateStartlocation() {
+        return dateStartlocation;
+    }
+
+    public void setDateStartlocation(String dateStartlocation) {
+        this.dateStartlocation = dateStartlocation;
+    }
+
+    public String getDateEndlocation() {
+        return dateEndlocation;
+    }
+
+    public void setDateEndlocation(String dateEndlocation) {
+        this.dateEndlocation = dateEndlocation;
+    }
+
+    public int getValuePerDay() {
         return valuePerDay;
     }
 
-    public void setValueperday(int valueperday) {
-        this.valuePerDay =  valueperday;
+    public void setValuePerDay(int valuePerDay) {
+        this.valuePerDay = valuePerDay;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 
 }

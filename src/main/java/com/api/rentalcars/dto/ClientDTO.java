@@ -1,21 +1,13 @@
-package com.api.rentalcars.model;
+package com.api.rentalcars.dto;
 
-import java.util.ArrayList;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-public class Client {
- 
+public class ClientDTO {
+    
     private String name;
-    private int code;
     private int totalValue;
     private String rg;
     private String dateOfBirth;
     private String email;
     private String address;
-
-    @JsonIgnore
-    private ArrayList<Car> cars = new ArrayList<>();
 
     public String getName() {
         return name;
@@ -23,14 +15,6 @@ public class Client {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
     }
 
     public int getTotalValue() {
@@ -53,8 +37,8 @@ public class Client {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(String dateofBirth) {
-        this.dateOfBirth = dateofBirth;
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getEmail() {
@@ -73,19 +57,6 @@ public class Client {
         this.address = address;
     }
 
-    public ArrayList<Car> getCars() {
-        return cars;
-    }
-
-    public void setCars(ArrayList<Car> car) {
-        this.cars = car;
-    }
-
-	public void addCar(Car car) {
-        cars.add(car);
-    }
-    public void removeCar(Car car){
-        cars.remove(car);
-    }
+    
 
 }
