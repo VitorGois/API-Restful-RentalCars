@@ -3,6 +3,7 @@ package com.api.rentalcars.repository;
 import java.util.ArrayList;
 import java.util.Optional;
 import com.api.rentalcars.model.Car;
+//import com.api.rentalcars.model.Client;
 
 import org.springframework.stereotype.Component;
 
@@ -30,14 +31,14 @@ public class CarRepository {
     }
     
 
-	public void remove(Car cc) {
-        cars.remove(cc);
+	public void remove(Car car) {
+        cars.remove(car);
 	}
 
 	public Car update(Car car) {
         Car aux = getCarbyCode(car.getCode()).get();
         if (aux!=null){
-       aux.setValueperday(car.getValueperday());
+       aux.setValuePerDay(aux.getValuePerDay());
         }
         return aux;
 	} 

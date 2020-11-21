@@ -6,26 +6,32 @@ import com.api.rentalcars.model.Client;
 import com.api.rentalcars.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+import org.springframework.http.HttpStatus;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class CarService {
-    @Autowired
+   
+  @Autowired
 	private CarRepository cRepository;
+  
 	@Autowired
 	private ClientService cService;
 
-    public Car fromDTO(CarDTO dto){
+  public Car fromDTO(CarDTO dto){
         Car car = new Car();
-        car.setValueperday(dto.getValuePerDay());
+        car.setValuePerDay(dto.getValuePerDay());
         return car;
     }
 
     public Car getCarbyCode(int code) {
         Optional<Car> op = cRepository.getCarbyCode(code);
-        return op.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Car not registred. " + code));
+        
+        return op.orElseThrow(  () -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Car nor registred,code: " + code));
     }
 
     public List<Car> getAllCars() {
@@ -33,16 +39,16 @@ public class CarService {
     }
 
     public Car save(Car car, int codeClient) {
-        Client client = cService.getClientbyCode(codeClient);
+        Client client = cService.getClientByID(codeClient);
         car.setClient(client);
-        client.addcar(car);
+        client.addCar(car);
         return cRepository.save(car);
     }
 
     public void removebyCode(int code, Client client) {
         Car car = getCarbyCode(code);
         client.removeCar(car);
-        cRepository.remove(client);
+        cRepository.remove(car);
     }
 
     public Car update(Car cDTO) {
@@ -67,6 +73,9 @@ public class CarService {
         cDTO.setValuePerDay(cDTO.getValuePerDay());
 
 		return cDTO;
+	}
+
+	public void removeClient(int cod, Client aux) {
 	}
 
 }
