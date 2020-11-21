@@ -1,16 +1,18 @@
 package com.api.rentalcars.model;
 
+import java.time.LocalDateTime;
+
 public class Car {
     
-    private String licensePlate;
     private int code;
-    private String dateStartlocation;
-    private String dateEndlocation;
+    private String licensePlate;
+    private LocalDateTime dateStartlocation;
+    private LocalDateTime dateEndlocation;
     private String model;
     private String producer;
-    private int valuePerDay;
-    private Client client;
+    private float valuePerDay;
     
+    private Client client;
 
     public String getLicensePlate() {
         return licensePlate;
@@ -26,22 +28,6 @@ public class Car {
 
     public void setCode(int code) {
         this.code = code;
-    }
-
-    public String getDataStartlocation() {
-        return dateStartlocation;
-    }
-
-    public void setDataStartlocation(String dataStartlocation) {
-        this.dateStartlocation = dataStartlocation;
-    }
-
-    public String getDataEndlocation() {
-        return dateEndlocation;
-    }
-
-    public void setDataEndlocation(String dataEndlocation) {
-        this.dateEndlocation = dataEndlocation;
     }
 
     public String getModel() {
@@ -60,27 +46,27 @@ public class Car {
         this.producer = producer;
     }
 
-    public String getDateStartlocation() {
+    public LocalDateTime getDateStartlocation() {
         return dateStartlocation;
     }
 
-    public void setDateStartlocation(String dateStartlocation) {
+    public void setDateStartlocation(LocalDateTime dateStartlocation) {
         this.dateStartlocation = dateStartlocation;
     }
 
-    public String getDateEndlocation() {
+    public LocalDateTime getDateEndlocation() {
         return dateEndlocation;
     }
 
-    public void setDateEndlocation(String dateEndlocation) {
+    public void setDateEndlocation(LocalDateTime dateEndlocation) {
         this.dateEndlocation = dateEndlocation;
     }
 
-    public int getValuePerDay() {
+    public float getValuePerDay() {
         return valuePerDay;
     }
 
-    public void setValuePerDay(int valuePerDay) {
+    public void setValuePerDay(float valuePerDay) {
         this.valuePerDay = valuePerDay;
     }
 

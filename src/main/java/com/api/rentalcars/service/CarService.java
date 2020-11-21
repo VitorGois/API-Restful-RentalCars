@@ -16,44 +16,46 @@ import java.util.Optional;
 @Service
 public class CarService {
    
-  @Autowired
-	private CarRepository cRepository;
-  
-	@Autowired
-	private ClientService cService;
+    @Autowired
+	private CarRepository carRepository;
 
-  public Car fromDTO(CarDTO dto){
-        Car car = new Car();
-        car.setValuePerDay(dto.getValuePerDay());
-        return car;
+    public Car fromDTO(CarDTO car){
+        Car aux = new Car();
+
+        aux.setLicensePlate(car.getLicensePlate());
+        aux.setDateStartlocation(car.getDateStartlocation());
+        aux.setDateEndlocation(car.getDateEndlocation());
+        aux.setModel(car.getModel());
+        aux.setProducer(car.getProducer());
+        aux.setValuePerDay(car.getValuePerDay());
+
+        return aux;
     }
 
-    public Car getCarbyCode(int code) {
-        Optional<Car> op = cRepository.getCarbyCode(code);
+    public Car getCarByCode(int code) {
+        Optional<Car> op = carRepository.getCarbyCode(code);
         
-        return op.orElseThrow(  () -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Car nor registred,code: " + code));
+        return op.orElseThrow(  () -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Car not registred, code: " + code));
     }
 
     public List<Car> getAllCars() {
-        return cRepository.getAllCars();
+        return carRepository.getAllCars();
     }
 
-    public Car save(Car car, int codeClient) {
-        Client client = cService.getClientByID(codeClient);
-        car.setClient(client);
-        client.addCar(car);
-        return cRepository.save(car);
+    public Car save(Car newCar) {
+        return carRepository.save(newCar);
     }
 
     public void removebyCode(int code, Client client) {
-        Car car = getCarbyCode(code);
+        Car car = getCarByCode(code);
         client.removeCar(car);
-        cRepository.remove(car);
+        carRepository.remove(car);
     }
 
     public Car update(Car cDTO) {
-        getCarbyCode(cDTO.getCode());
-        return cRepository.update(cDTO);
+        getCarByCode(cDTO.getCode());
+
+        return carRepository.update(cDTO);
     }
 
     public List<CarDTO> tolistDTO(ArrayList<Car> cars) {
@@ -75,7 +77,8 @@ public class CarService {
 		return cDTO;
 	}
 
-	public void removeClient(int cod, Client aux) {
-	}
-
+	public void removeCar(Car car) {
+        carRepository.remove(getCarByCode(car.getCode()));
+    }
+    
 }

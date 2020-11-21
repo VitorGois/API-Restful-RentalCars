@@ -3,7 +3,6 @@ package com.api.rentalcars.dto;
 public class ClientDTO {
     
     private String name;
-    private int totalValue;
     private String rg;
     private String dateOfBirth;
     private String email;
@@ -15,14 +14,6 @@ public class ClientDTO {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getTotalValue() {
-        return totalValue;
-    }
-
-    public void setTotalValue(int totalValue) {
-        this.totalValue = totalValue;
     }
 
     public String getRg() {
@@ -56,7 +47,5 @@ public class ClientDTO {
     public void setAddress(String address) {
         this.address = address;
     }
-
-    
 
 }

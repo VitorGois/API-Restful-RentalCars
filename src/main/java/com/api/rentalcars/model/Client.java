@@ -6,9 +6,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class Client {
  
-    private String name;
     private int code;
-    private int totalValue;
+    private String name;
+    private float totalValue;
     private String rg;
     private String dateOfBirth;
     private String email;
@@ -33,11 +33,11 @@ public class Client {
         this.code = code;
     }
 
-    public int getTotalValue() {
+    public float getTotalValue() {
         return totalValue;
     }
 
-    public void setTotalValue(int totalValue) {
+    public void setTotalValue(float totalValue) {
         this.totalValue = totalValue;
     }
 
@@ -81,7 +81,7 @@ public class Client {
         this.cars = car;
     }
 
-	  public void addCar(Car car) {
+	public void addCar(Car car) {
         cars.add(car);
     }
     public void removeCar(Car car){
