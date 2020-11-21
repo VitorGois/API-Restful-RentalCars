@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.api.rentalcars.model.Car;
 import com.api.rentalcars.model.Client;
-//import com.api.rentalcars.repository.ClientRepository;
+import com.api.rentalcars.repository.ClientRepository;
 import com.api.rentalcars.service.CarService;
 import com.api.rentalcars.service.ClientService;
 
@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -30,9 +32,9 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
-    /*@Autowired
-    private ClientRepository clientRepository;*/
-
+    @Autowired
+    private ClientRepository clientRepository;
+  
     @Autowired
     private CarService carService;
 
@@ -80,7 +82,7 @@ public class ClientController {
 
     @PostMapping("/{id}/cars")
     public ResponseEntity<Void> postCarClient(@PathVariable int id, @RequestBody Car car, HttpServletRequest request, UriComponentsBuilder builder) {
-        car = carService.save(car, id);
+        car = carService.save(id, car);
 
         UriComponents uriComponents = builder.path(request.getRequestURI() + "/" + car.getCode()).build();
 

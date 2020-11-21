@@ -7,20 +7,22 @@ import com.api.rentalcars.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.http.HttpStatus;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import org.springframework.http.HttpStatus;
 
 @Service
 public class CarService {
-    @Autowired
+   
+  @Autowired
 	private CarRepository cRepository;
+  
 	@Autowired
 	private ClientService cService;
 
-    public Car fromDTO(CarDTO dto){
+  public Car fromDTO(CarDTO dto){
         Car car = new Car();
         car.setValuePerDay(dto.getValuePerDay());
         return car;
