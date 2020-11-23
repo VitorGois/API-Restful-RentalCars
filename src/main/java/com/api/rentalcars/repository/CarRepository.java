@@ -11,7 +11,7 @@ public class CarRepository {
 
     private ArrayList <Car> cars = new ArrayList<>();
     
-    private int count=1;
+    private static int count=1;
 
     public ArrayList<Car> getAllCars() {
 		return cars;

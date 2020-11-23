@@ -3,7 +3,7 @@ package com.api.rentalcars.dto;
 public class ClientDTO {
     
     private String name;
-    private String rg;
+    private String cpf;
     private String dateOfBirth;
     private String email;
     private String address;
@@ -16,12 +16,12 @@ public class ClientDTO {
         this.name = name;
     }
 
-    public String getRg() {
-        return rg;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setRg(String rg) {
-        this.rg = rg;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public String getDateOfBirth() {

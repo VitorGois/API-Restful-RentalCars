@@ -9,7 +9,7 @@ public class Client {
     private int code;
     private String name;
     private float totalValue;
-    private String rg;
+    private String cpf;
     private String dateOfBirth;
     private String email;
     private String address;
@@ -41,12 +41,12 @@ public class Client {
         this.totalValue = totalValue;
     }
 
-    public String getRg() {
-        return rg;
+    public String getcpf() {
+        return cpf;
     }
 
-    public void setRg(String rg) {
-        this.rg = rg;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public String getDateOfBirth() {

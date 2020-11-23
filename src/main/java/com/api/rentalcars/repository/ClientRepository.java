@@ -13,7 +13,7 @@ public class ClientRepository {
 
 	private ArrayList<Client> clients = new ArrayList<>();
 
-	private int nextCode = 1;
+	private static int nextCode = 1;
 
 	public List<Client> getAllClients() {
 		return clients;

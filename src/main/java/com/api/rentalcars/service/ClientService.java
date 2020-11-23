@@ -37,7 +37,7 @@ public class ClientService {
 		Client aux = new Client();
 		
 		aux.setName(client.getName());
-		aux.setRg(client.getRg());
+		aux.setCpf(client.getCpf());
 		aux.setDateOfBirth(client.getDateOfBirth());
 		aux.setEmail(client.getEmail());
 		aux.setAddress(client.getAddress());
