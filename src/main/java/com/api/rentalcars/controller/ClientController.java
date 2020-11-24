@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import com.api.rentalcars.dto.ClientDTO;
 // import com.api.rentalcars.model.Car;
@@ -30,7 +31,7 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
   
-    @Autowired
+    //@Autowired
     // private CarService carService;
 
     @GetMapping()
@@ -46,7 +47,7 @@ public class ClientController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> postClient(@RequestBody ClientDTO newClient, HttpServletRequest request, UriComponentsBuilder builder) {
+    public ResponseEntity<Void> postClient(@Valid @RequestBody ClientDTO newClient, HttpServletRequest request, UriComponentsBuilder builder) {
         Client client = clientService.save(clientService.fromDTO(newClient));
 
         UriComponents uriComponents = builder.path(request.getRequestURI() + "/" + client.getCode()).build();
