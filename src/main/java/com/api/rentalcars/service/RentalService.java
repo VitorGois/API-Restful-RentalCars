@@ -27,7 +27,7 @@ public class RentalService {
 	public Rental getRentalByNum(int num) {
 		Optional<Rental> op = rentalRepository.getRentalByNum(num);
 
-		return op.orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Client not registered: " + num));
+		return op.orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Rental not registered: " + num));
 	}
 
 	public Rental save(Rental newRental) {
