@@ -88,15 +88,20 @@ public class ClientController {
         Client client = clientService.getClientByCode(codeClient);
         Car car = carService.getCarByCode(codeCar);
 
-        Rental rental = rentalService.save(rentalService.fromDTO(newRental));
-        rental.setClient(client);
-        rental.setCar(car);
+        if(rentalService.verifyData(newRental.getDateStartlocation()) && rentalService.verifyData(newRental.getDateEndlocation())){
+            Rental rental = rentalService.save(rentalService.fromDTO(newRental));
+            rental.setClient(client);
+            rental.setCar(car);
+    
+            car.setClient(client);
+    
+            UriComponents uriComponents = builder.path(request.getRequestURI() + "/" + rental.getNum()).build();
+    
+            return ResponseEntity.created(uriComponents.toUri()).build();
+        }
 
-        car.setClient(client);
-
-        UriComponents uriComponents = builder.path(request.getRequestURI() + "/" + rental.getNum()).build();
-
-        return ResponseEntity.created(uriComponents.toUri()).build();
+        return ResponseEntity.badRequest().build();
+        
     }
 
     @GetMapping("/{codeClient}/rentals")

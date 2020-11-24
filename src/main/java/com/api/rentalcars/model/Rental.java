@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class Rental {
     
     private int num;
+    private boolean open;
 
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dateStartlocation;
