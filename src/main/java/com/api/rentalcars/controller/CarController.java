@@ -44,7 +44,11 @@ public class CarController {
     }
 
     @PostMapping()
+
     public ResponseEntity<Void> postCar(@Valid @RequestBody CarDTO newCar, HttpServletRequest request, UriComponentsBuilder builder) {
+
+    public ResponseEntity<Void> postCar(@RequestBody CarDTO newCar, HttpServletRequest request, UriComponentsBuilder builder) {
+
         Car car = carService.save(carService.fromDTO(newCar));
 
         UriComponents uriComponents = builder.path(request.getRequestURI() + "/" + car.getCode()).build();
