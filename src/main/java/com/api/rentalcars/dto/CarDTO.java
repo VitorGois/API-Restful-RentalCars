@@ -1,7 +1,5 @@
 package com.api.rentalcars.dto;
 
-import java.time.LocalDate;
-
 import javax.validation.constraints.NotBlank;
 
 import org.hibernate.validator.constraints.Length;
@@ -11,9 +9,6 @@ public class CarDTO {
     @NotBlank(message ="The license Plate is required" )
     @Length (min = 7, max =7, message = "Your Plate must be 7 characters only format ABC1111")
     private String licensePlate;
-  
-    private LocalDate dateStartlocation;
-    private LocalDate dateEndlocation;
   
     @NotBlank(message ="The Car's model is required" )
     private String model;
@@ -30,22 +25,6 @@ public class CarDTO {
 
     public void setLicensePlate(String licensePlate) {
         this.licensePlate = licensePlate;
-    }
-
-    public LocalDate getDateStartlocation() {
-        return dateStartlocation;
-    }
-
-    public void setDateStartlocation(LocalDate dateStartlocation) {
-        this.dateStartlocation = dateStartlocation;
-    }
-
-    public LocalDate getDateEndlocation() {
-        return dateEndlocation;
-    }
-
-    public void setDateEndlocation(LocalDate dateEndlocation) {
-        this.dateEndlocation = dateEndlocation;
     }
 
     public String getModel() {

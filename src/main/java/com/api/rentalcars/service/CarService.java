@@ -23,8 +23,6 @@ public class CarService {
         Car aux = new Car();
 
         aux.setLicensePlate(car.getLicensePlate());
-        aux.setDateStartlocation(car.getDateStartlocation());
-        aux.setDateEndlocation(car.getDateEndlocation());
         aux.setModel(car.getModel());
         aux.setProducer(car.getProducer());
         aux.setValuePerDay(car.getValuePerDay());

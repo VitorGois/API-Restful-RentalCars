@@ -29,8 +29,6 @@ public class CarRepository {
 
     public Car save(Car newCar){
         newCar.setCode(count++);
-        newCar.setDateEndlocation(null);
-        newCar.setDateStartlocation(null);
 
         cars.add(newCar);
 

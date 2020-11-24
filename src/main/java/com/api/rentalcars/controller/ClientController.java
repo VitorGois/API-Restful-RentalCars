@@ -99,7 +99,7 @@ public class ClientController {
         return ResponseEntity.created(uriComponents.toUri()).build();
     }
 
-    @GetMapping("/{codeClient}/cars")
+    @GetMapping("/{codeClient}/rentals")
     public List<Rental> getAllRentals() {
         return rentalService.getAllRentals();
     }

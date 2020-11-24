@@ -1,13 +1,9 @@
 package com.api.rentalcars.model;
 
-import java.time.LocalDate;
-
 public class Car {
     
     private int code;
     private String licensePlate;
-    private LocalDate dateStartlocation;
-    private LocalDate dateEndlocation;
     private String model;
     private String producer;
     private float valuePerDay;
@@ -44,22 +40,6 @@ public class Car {
 
     public void setProducer(String producer) {
         this.producer = producer;
-    }
-
-    public LocalDate getDateStartlocation() {
-        return dateStartlocation;
-    }
-
-    public void setDateStartlocation(LocalDate dateStartlocation) {
-        this.dateStartlocation = dateStartlocation;
-    }
-
-    public LocalDate getDateEndlocation() {
-        return dateEndlocation;
-    }
-
-    public void setDateEndlocation(LocalDate dateEndlocation) {
-        this.dateEndlocation = dateEndlocation;
     }
 
     public float getValuePerDay() {
