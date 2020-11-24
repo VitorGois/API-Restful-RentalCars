@@ -2,7 +2,6 @@ package com.api.rentalcars.dto;
 
 import java.time.LocalDate;
 
-
 import javax.validation.constraints.NotBlank;
 
 import org.hibernate.validator.constraints.Length;

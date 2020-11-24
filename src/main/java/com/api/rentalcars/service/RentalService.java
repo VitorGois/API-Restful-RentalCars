@@ -37,6 +37,9 @@ public class RentalService {
 		
         aux.setDateStartlocation(rental.getDateStartlocation());
         aux.setDateEndlocation(rental.getDateEndlocation());
+
+        //aux.setTotalDays(rental.getDateEndlocation() - rental.getDateStartlocation());
+    
         aux.setTotalValue(0f);
 
 		return aux;
