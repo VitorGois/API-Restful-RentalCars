@@ -100,8 +100,8 @@ public class ClientController {
     }
 
     @GetMapping("/{codeClient}/rentals")
-    public List<Rental> getAllRentals() {
-        return rentalService.getAllRentals();
+    public List<Rental> getRentalByClient(@PathVariable int codeClient) {
+        return rentalService.getRentalByClient(clientService.getClientByCode(codeClient));        
     }
 
     // @DeleteMapping("/{codeClient}/cars/{codeCar}")

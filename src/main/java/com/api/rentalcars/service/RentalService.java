@@ -1,9 +1,11 @@
 package com.api.rentalcars.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import com.api.rentalcars.dto.RentalDTO;
+import com.api.rentalcars.model.Client;
 import com.api.rentalcars.model.Rental;
 import com.api.rentalcars.repository.RentalRepository;
 
@@ -43,6 +45,18 @@ public class RentalService {
         aux.setTotalValue(0f);
 
 		return aux;
+	}
+
+	public List<Rental> getRentalByClient(Client client) {
+		ArrayList<Rental> rentals = new ArrayList<>();
+		
+		for(Rental aux : rentalRepository.getAllRentals()) {
+			if(aux.getClient().equals(client)) {
+				rentals.add(aux);
+			}
+		}
+
+		return rentals;
 	}
 
 }
