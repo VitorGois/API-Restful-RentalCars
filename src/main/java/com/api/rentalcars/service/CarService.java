@@ -16,7 +16,6 @@ import java.util.Optional;
 @Service
 public class CarService {
    
-<<<<<<< HEAD
     @Autowired
 	private CarRepository carRepository;
 
@@ -31,18 +30,6 @@ public class CarService {
         aux.setValuePerDay(car.getValuePerDay());
 
         return aux;
-=======
-  @Autowired
-	private CarRepository cRepository;
-  
-	@Autowired
-	private ClientService cService;
-
-  public Car fromDTO(CarDTO dto){
-        Car car = new Car();
-        car.setValuePerDay(dto.getValuePerDay());
-        return car;
->>>>>>> cdc71c1fa8fc4b38d06d2bfbfc7e1436c06b2bcd
     }
 
     public Car getCarByCode(int code) {

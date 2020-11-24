@@ -11,10 +11,6 @@ import com.api.rentalcars.repository.ClientRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-<<<<<<< HEAD
-=======
-import org.springframework.stereotype.Service;
->>>>>>> cdc71c1fa8fc4b38d06d2bfbfc7e1436c06b2bcd
 import org.springframework.web.server.ResponseStatusException;
 
 @Service
