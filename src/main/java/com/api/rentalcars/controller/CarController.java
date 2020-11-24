@@ -32,23 +32,19 @@ public class CarController {
     private CarService carService;
 
     @GetMapping
-    public List<Car> getAllCars(){
+    public List<Car> getAllCars() {
         return carService.getAllCars();
     }
 
     @GetMapping("/{code}")
-    public ResponseEntity<Car> getCarbyCode(@PathVariable int code){
+    public ResponseEntity<Car> getCarbyCode(@PathVariable int code) {
         Car cc = carService.getCarByCode(code);
         
         return ResponseEntity.ok(cc);
     }
 
     @PostMapping()
-
     public ResponseEntity<Void> postCar(@Valid @RequestBody CarDTO newCar, HttpServletRequest request, UriComponentsBuilder builder) {
-
-    public ResponseEntity<Void> postCar(@RequestBody CarDTO newCar, HttpServletRequest request, UriComponentsBuilder builder) {
-
         Car car = carService.save(carService.fromDTO(newCar));
 
         UriComponents uriComponents = builder.path(request.getRequestURI() + "/" + car.getCode()).build();

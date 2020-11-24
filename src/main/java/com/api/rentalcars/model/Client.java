@@ -8,7 +8,6 @@ public class Client {
  
     private int code;
     private String name;
-    private float totalValue;
     private String cpf;
     private String dateOfBirth;
     private String email;
@@ -31,14 +30,6 @@ public class Client {
 
     public void setCode(int code) {
         this.code = code;
-    }
-
-    public float getTotalValue() {
-        return totalValue;
-    }
-
-    public void setTotalValue(float totalValue) {
-        this.totalValue = totalValue;
     }
 
     public String getcpf() {

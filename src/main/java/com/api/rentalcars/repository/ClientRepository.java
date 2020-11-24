@@ -31,7 +31,6 @@ public class ClientRepository {
 
 	public Client save(Client newClient) {
 		newClient.setCode(nextCode++);
-		newClient.setTotalValue(0f);
 		
 		clients.add(newClient);
 
