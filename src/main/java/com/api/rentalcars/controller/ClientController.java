@@ -8,10 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import com.api.rentalcars.dto.ClientDTO;
-// import com.api.rentalcars.model.Car;
+import com.api.rentalcars.dto.RentalDTO;
+import com.api.rentalcars.model.Car;
 import com.api.rentalcars.model.Client;
-// import com.api.rentalcars.service.CarService;
+import com.api.rentalcars.model.Rental;
+import com.api.rentalcars.service.CarService;
 import com.api.rentalcars.service.ClientService;
+import com.api.rentalcars.service.RentalService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,8 +24,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -33,8 +34,11 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
   
-    //@Autowired
-    // private CarService carService;
+    @Autowired
+    private CarService carService;
+
+    @Autowired
+    private RentalService rentalService;
 
     @GetMapping()
     public List<Client> getAllClients() {
@@ -79,14 +83,24 @@ public class ClientController {
         return ResponseEntity.status(405).build();
     }
 
-    // @PostMapping("/{codeClient}/cars/{codeCar}")
-    // public ResponseEntity<Void> postCarClient(@PathVariable int codeClient, @PathVariable int codeCar, @RequestBody Car car, HttpServletRequest request, UriComponentsBuilder builder) {
-    //     car = carService.save(codeClient, car);
+    @PostMapping("/{codeClient}/cars/{codeCar}")
+    public ResponseEntity<Void> postCarClient(@PathVariable int codeClient, @PathVariable int codeCar, @RequestBody RentalDTO newRental, HttpServletRequest request, UriComponentsBuilder builder) {
+        Client client = clientService.getClientByCode(codeClient);
+        Car car = carService.getCarByCode(codeCar);
 
-    //     UriComponents uriComponents = builder.path(request.getRequestURI() + "/" + car.getCode()).build();
+        Rental rental = rentalService.save(rentalService.fromDTO(newRental));
+        rental.setClient(client);
+        rental.setCar(car);
+        car.setClient(client);
 
-    //     return ResponseEntity.created(uriComponents.toUri()).build();
-    // }
+        UriComponents uriComponents = builder.path(request.getRequestURI() + "/" + rental.getNum()).build();
+        return ResponseEntity.created(uriComponents.toUri()).build();
+    }
+
+    @GetMapping("/{codeClient}/cars")
+    public List<Rental> getAllRentals() {
+        return rentalService.getAllRentals();
+    }
 
     // @DeleteMapping("/{codeClient}/cars/{codeCar}")
     // public ResponseEntity<Void> deleteCar(@PathVariable int codeClient, @PathVariable int codeCar) {

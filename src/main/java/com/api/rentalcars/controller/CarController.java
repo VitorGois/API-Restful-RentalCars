@@ -3,6 +3,7 @@ package com.api.rentalcars.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+
 import javax.validation.Valid;
 
 import com.api.rentalcars.dto.CarDTO;
@@ -31,12 +32,12 @@ public class CarController {
     private CarService carService;
 
     @GetMapping
-    public List<Car> getAllCars(){
+    public List<Car> getAllCars() {
         return carService.getAllCars();
     }
 
     @GetMapping("/{code}")
-    public ResponseEntity<Car> getCarbyCode(@PathVariable int code){
+    public ResponseEntity<Car> getCarbyCode(@PathVariable int code) {
         Car cc = carService.getCarByCode(code);
         
         return ResponseEntity.ok(cc);
