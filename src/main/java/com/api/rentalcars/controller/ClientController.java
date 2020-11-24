@@ -10,7 +10,12 @@ import javax.validation.Valid;
 import com.api.rentalcars.dto.ClientDTO;
 // import com.api.rentalcars.model.Car;
 import com.api.rentalcars.model.Client;
+<<<<<<< HEAD
 // import com.api.rentalcars.service.CarService;
+=======
+import com.api.rentalcars.repository.ClientRepository;
+import com.api.rentalcars.service.CarService;
+>>>>>>> cdc71c1fa8fc4b38d06d2bfbfc7e1436c06b2bcd
 import com.api.rentalcars.service.ClientService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +26,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -30,9 +37,18 @@ public class ClientController {
     
     @Autowired
     private ClientService clientService;
+<<<<<<< HEAD
   
     //@Autowired
     // private CarService carService;
+=======
+
+    @Autowired
+    private ClientRepository clientRepository;
+  
+    @Autowired
+    private CarService carService;
+>>>>>>> cdc71c1fa8fc4b38d06d2bfbfc7e1436c06b2bcd
 
     @GetMapping()
     public List<Client> getAllClients() {
@@ -77,9 +93,15 @@ public class ClientController {
         return ResponseEntity.status(405).build();
     }
 
+<<<<<<< HEAD
     // @PostMapping("/{codeClient}/cars/{codeCar}")
     // public ResponseEntity<Void> postCarClient(@PathVariable int codeClient, @PathVariable int codeCar, @RequestBody Car car, HttpServletRequest request, UriComponentsBuilder builder) {
     //     car = carService.save(codeClient, car);
+=======
+    @PostMapping("/{id}/cars")
+    public ResponseEntity<Void> postCarClient(@PathVariable int id, @RequestBody Car car, HttpServletRequest request, UriComponentsBuilder builder) {
+        car = carService.save(id, car);
+>>>>>>> cdc71c1fa8fc4b38d06d2bfbfc7e1436c06b2bcd
 
     //     UriComponents uriComponents = builder.path(request.getRequestURI() + "/" + car.getCode()).build();
 
