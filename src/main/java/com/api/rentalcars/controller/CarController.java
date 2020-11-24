@@ -8,7 +8,9 @@ import javax.validation.Valid;
 
 import com.api.rentalcars.dto.CarDTO;
 import com.api.rentalcars.model.Car;
+import com.api.rentalcars.model.Rental;
 import com.api.rentalcars.service.CarService;
+import com.api.rentalcars.service.RentalService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +32,9 @@ public class CarController {
 
     @Autowired
     private CarService carService;
+
+    @Autowired
+    private RentalService rentalService;
 
     @GetMapping
     public List<Car> getAllCars() {
@@ -73,6 +78,11 @@ public class CarController {
         }
 
         return ResponseEntity.status(405).build();
+    }
+
+    @GetMapping("/{codeCar}/rentals")
+    public List<Rental> getRentalByClient(@PathVariable int codeCar) {
+        return rentalService.getRentalByCar(carService.getCarByCode(codeCar));        
     }
 
 }

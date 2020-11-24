@@ -92,6 +92,7 @@ public class ClientController {
             Rental rental = rentalService.save(rentalService.fromDTO(newRental));
             rental.setClient(client);
             rental.setCar(car);
+            rental.setTotalValue(rentalService.calculateTotalValue(rental));
     
             car.setClient(client);
     

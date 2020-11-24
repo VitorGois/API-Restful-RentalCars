@@ -2,11 +2,13 @@ package com.api.rentalcars.service;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import com.api.rentalcars.dto.RentalDTO;
+import com.api.rentalcars.model.Car;
 import com.api.rentalcars.model.Client;
 import com.api.rentalcars.model.Rental;
 import com.api.rentalcars.repository.RentalRepository;
@@ -63,6 +65,18 @@ public class RentalService {
 		return rentals;
 	}
 
+	public List<Rental> getRentalByCar(Car car) {
+		ArrayList<Rental> rentals = new ArrayList<>();
+
+		for (Rental aux : rentalRepository.getAllRentals()) {
+			if (aux.getCar().equals(car)) {
+				rentals.add(aux);
+			}
+		}
+
+		return rentals;
+	}
+
 	public Boolean verifyData(LocalDate date) {
 		DayOfWeek d = date.getDayOfWeek();
 
@@ -71,6 +85,20 @@ public class RentalService {
 		} else {
 			return true;
 		}
+	}
+
+	public int calculateIntervalPeriod(LocalDate start, LocalDate end) {
+		Period intervalPeriod = Period.between(start, end);
+
+		return intervalPeriod.getDays();
+	}
+
+	public float calculateTotalValue(Rental rental) {
+		int days = calculateIntervalPeriod(rental.getDateStartlocation(), rental.getDateEndlocation());
+		
+		float total = (rental.getCar()).getValuePerDay() * days;
+
+		return total;
 	}
 
 }

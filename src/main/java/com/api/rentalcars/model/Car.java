@@ -1,5 +1,7 @@
 package com.api.rentalcars.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Car {
     
     private int code;
@@ -8,6 +10,7 @@ public class Car {
     private String producer;
     private float valuePerDay;
     
+    @JsonIgnore
     private Client client;
 
     public String getLicensePlate() {
