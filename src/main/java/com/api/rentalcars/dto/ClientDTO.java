@@ -20,7 +20,7 @@ public class ClientDTO {
     private String dateOfBirth;
 
     @NotBlank(message = "E-mail is required")
-    @Email
+    @Email(message = "Email must be: example@mail.com")
     private String email;
 
     @NotBlank(message = "Adress is required")
