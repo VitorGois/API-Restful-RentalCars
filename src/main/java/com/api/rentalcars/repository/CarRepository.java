@@ -3,14 +3,15 @@ package com.api.rentalcars.repository;
 import java.util.ArrayList;
 import java.util.Optional;
 import com.api.rentalcars.model.Car;
-//import com.api.rentalcars.model.Client;
 
 import org.springframework.stereotype.Component;
 
 @Component
 public class CarRepository {
+
     private ArrayList <Car> cars = new ArrayList<>();
-    private int count=1;
+    
+    private static int count=1;
 
     public ArrayList<Car> getAllCars() {
 		return cars;
@@ -22,14 +23,19 @@ public class CarRepository {
                 return Optional.of(aux);
             }
         }
+
         return Optional.empty();
     }
-    public Car save(Car car){
-        car.setCode(count++);
-        cars.add(car);
-        return car;
+
+    public Car save(Car newCar){
+        newCar.setCode(count++);
+        newCar.setDateEndlocation(null);
+        newCar.setDateStartlocation(null);
+
+        cars.add(newCar);
+
+        return newCar;
     }
-    
 
 	public void remove(Car car) {
         cars.remove(car);
@@ -37,9 +43,11 @@ public class CarRepository {
 
 	public Car update(Car car) {
         Car aux = getCarbyCode(car.getCode()).get();
+
         if (aux!=null){
-       aux.setValuePerDay(aux.getValuePerDay());
+            aux.setValuePerDay(car.getValuePerDay());
         }
+
         return aux;
 	} 
     

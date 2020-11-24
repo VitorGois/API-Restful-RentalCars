@@ -6,10 +6,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class Client {
  
-    private String name;
     private int code;
-    private int totalValue;
-    private String rg;
+    private String name;
+    private float totalValue;
+    private String cpf;
     private String dateOfBirth;
     private String email;
     private String address;
@@ -33,20 +33,20 @@ public class Client {
         this.code = code;
     }
 
-    public int getTotalValue() {
+    public float getTotalValue() {
         return totalValue;
     }
 
-    public void setTotalValue(int totalValue) {
+    public void setTotalValue(float totalValue) {
         this.totalValue = totalValue;
     }
 
-    public String getRg() {
-        return rg;
+    public String getcpf() {
+        return cpf;
     }
 
-    public void setRg(String rg) {
-        this.rg = rg;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public String getDateOfBirth() {

@@ -5,46 +5,54 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+import com.api.rentalcars.dto.ClientDTO;
 import com.api.rentalcars.model.Client;
 import com.api.rentalcars.repository.ClientRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-//import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class ClientService {
 
 	@Autowired
-	private ClientRepository repository;
+	private ClientRepository clientRepository;
 
 	public List<Client> getAllClients() {
-		return repository.getAllClients();
+		return clientRepository.getAllClients();
 	}
 
-	public Client getClientByID(int id) {
-		Optional<Client> op = repository.getClientByID(id);
-		
+	public Client getClientByCode(int id) {
+		Optional<Client> op = clientRepository.getClientByCode(id);
 
 		return op.orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Client not registered: " + id));
 	}
 
 	public Client save(Client newClient) {
-		return repository.save(newClient);
+		return clientRepository.save(newClient);
 	}
 
-	public Client fromDTO(Client changesClient) {
+	public Client fromDTO(ClientDTO client) {
 		Client aux = new Client();
 		
-		aux.setEmail(changesClient.getEmail());
-		aux.setAddress(changesClient.getAddress());
+		aux.setName(client.getName());
+		aux.setCpf(client.getCpf());
+		aux.setDateOfBirth(client.getDateOfBirth());
+		aux.setEmail(client.getEmail());
+		aux.setAddress(client.getAddress());
 
 		return aux;
 	}
+	
+	public Client update(Client client) {
+		getClientByCode(client.getCode());
 
-	public Client update(Client aux) {
-		return null;
+		return clientRepository.update(client);
+	}
+
+	public void removeClient(Client client) {
+		clientRepository.remove(getClientByCode(client.getCode()));
 	}
     
 }

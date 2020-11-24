@@ -5,11 +5,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
-import com.api.rentalcars.model.Car;
+import com.api.rentalcars.dto.ClientDTO;
+// import com.api.rentalcars.model.Car;
 import com.api.rentalcars.model.Client;
-//import com.api.rentalcars.repository.ClientRepository;
-import com.api.rentalcars.service.CarService;
+// import com.api.rentalcars.service.CarService;
 import com.api.rentalcars.service.ClientService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,71 +30,69 @@ public class ClientController {
     
     @Autowired
     private ClientService clientService;
-
-    /*@Autowired
-    private ClientRepository clientRepository;*/
-
-    @Autowired
-    private CarService carService;
+  
+    //@Autowired
+    // private CarService carService;
 
     @GetMapping()
     public List<Client> getAllClients() {
         return clientService.getAllClients();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Client> getClientByID(@PathVariable int id) {
-        Client aux = clientService.getClientByID(id);
+    @GetMapping("/{code}")
+    public ResponseEntity<Client> getClientByCode(@PathVariable int code) {
+        Client client = clientService.getClientByCode(code);
 
-        return ResponseEntity.ok(aux);
+        return ResponseEntity.ok(client);
     }
 
     @PostMapping
-    public ResponseEntity<Void> postClient(@RequestBody Client newClient, HttpServletRequest request, UriComponentsBuilder builder) {
-        Client aux = clientService.save(newClient);
+    public ResponseEntity<Void> postClient(@Valid @RequestBody ClientDTO newClient, HttpServletRequest request, UriComponentsBuilder builder) {
+        Client client = clientService.save(clientService.fromDTO(newClient));
 
-        UriComponents uriComponents = builder.path(request.getRequestURI() + "/" + aux.getCode()).build();
+        UriComponents uriComponents = builder.path(request.getRequestURI() + "/" + client.getCode()).build();
 
         return ResponseEntity.created(uriComponents.toUri()).build();
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Client> putClient(@PathVariable int id, @RequestBody Client changesClient) {
-        Client aux = clientService.fromDTO(changesClient);
+    @PutMapping("/{code}")
+    public ResponseEntity<Client> putClient(@PathVariable int code, @RequestBody ClientDTO changesClient) {
+        Client client = clientService.fromDTO(changesClient);
         
-        aux.setCode(id);
-        aux = clientService.update(aux);
+        client.setCode(code);
+        client = clientService.update(client);
 
-        return ResponseEntity.ok(aux);
+        return ResponseEntity.ok(client);
     }
 
-    @DeleteMapping("/{id}") 
-    public ResponseEntity<Void> deleteClient(@PathVariable int id) {
-        Client aux = clientService.getClientByID(id);
+    @DeleteMapping("/{code}") 
+    public ResponseEntity<Void> deleteClient(@PathVariable int code) {
+        Client client = clientService.getClientByCode(code);
 
-        if(aux.getCars().isEmpty()) {
+        if(client.getCars().isEmpty()) {
+            clientService.removeClient(client);
             return ResponseEntity.badRequest().build();
         }
 
         return ResponseEntity.status(405).build();
     }
 
-    @PostMapping("/{id}/cars")
-    public ResponseEntity<Void> postCarClient(@PathVariable int id, @RequestBody Car car, HttpServletRequest request, UriComponentsBuilder builder) {
-        car = carService.save(car, id);
+    // @PostMapping("/{codeClient}/cars/{codeCar}")
+    // public ResponseEntity<Void> postCarClient(@PathVariable int codeClient, @PathVariable int codeCar, @RequestBody Car car, HttpServletRequest request, UriComponentsBuilder builder) {
+    //     car = carService.save(codeClient, car);
 
-        UriComponents uriComponents = builder.path(request.getRequestURI() + "/" + car.getCode()).build();
+    //     UriComponents uriComponents = builder.path(request.getRequestURI() + "/" + car.getCode()).build();
 
-        return ResponseEntity.created(uriComponents.toUri()).build();
-    }
+    //     return ResponseEntity.created(uriComponents.toUri()).build();
+    // }
 
-    @DeleteMapping("/{id}/cars/{cod}")
-    public ResponseEntity<Void> deleteCar(@PathVariable int id, @PathVariable int cod) {
-        Client aux = clientService.getClientByID(id);
+    // @DeleteMapping("/{codeClient}/cars/{codeCar}")
+    // public ResponseEntity<Void> deleteCar(@PathVariable int codeClient, @PathVariable int codeCar) {
+    //     Client client = clientService.getClientByCode(codeClient);
 
-        carService.removeClient(cod, aux);
+    //     carService.removeClient(codeCar, client);
 
-        return ResponseEntity.noContent().build();
-    }
+    //     return ResponseEntity.noContent().build();
+    // }
 
 }

@@ -1,12 +1,30 @@
 package com.api.rentalcars.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Email;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.br.CPF;
+
 public class ClientDTO {
     
+    @NotBlank(message = "Name is required")
+    @Length(min = 3, max = 50, message = "Name must contain between 3 and 50 characters")
     private String name;
-    private int totalValue;
-    private String rg;
+
+    @NotBlank(message = "CPF is required")
+    @CPF(message = "CPF is invalid")
+    private String cpf;
+
+    @NotBlank(message = "Date of Birth is required")
     private String dateOfBirth;
+
+    @NotBlank(message = "E-mail is required")
+    @Email(message = "Email must be: example@mail.com")
     private String email;
+
+    @NotBlank(message = "Adress is required")
+    @Length(min = 10, max = 50, message = "Name must contain between 10 and 50 characters")
     private String address;
 
     public String getName() {
@@ -17,20 +35,12 @@ public class ClientDTO {
         this.name = name;
     }
 
-    public int getTotalValue() {
-        return totalValue;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setTotalValue(int totalValue) {
-        this.totalValue = totalValue;
-    }
-
-    public String getRg() {
-        return rg;
-    }
-
-    public void setRg(String rg) {
-        this.rg = rg;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public String getDateOfBirth() {
@@ -56,7 +66,5 @@ public class ClientDTO {
     public void setAddress(String address) {
         this.address = address;
     }
-
-    
 
 }

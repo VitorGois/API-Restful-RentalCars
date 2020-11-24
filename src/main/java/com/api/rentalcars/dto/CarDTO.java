@@ -1,13 +1,24 @@
 package com.api.rentalcars.dto;
 
+import java.time.LocalDateTime;
+
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.validator.constraints.Length;
+
 public class CarDTO {
-        
+
+    @NotBlank(message ="The license Plate is required" )
+    @Length (min = 7, max =7, message = "Your Plate must be 7 characters only format ABC1111")
     private String licensePlate;
-    private String dateStartlocation;
-    private String dateEndlocation;
+    private LocalDateTime dateStartlocation;
+    private LocalDateTime dateEndlocation;
+    @NotBlank(message ="The Car's model is required" )
     private String model;
+    @NotBlank(message ="The Car's producer is required" )
     private String producer;
-    private int valuePerDay;
+    //@NotBlank(message ="The Car's value per day is required" )
+    private float valuePerDay;
 
     public String getLicensePlate() {
         return licensePlate;
@@ -17,19 +28,19 @@ public class CarDTO {
         this.licensePlate = licensePlate;
     }
 
-    public String getDateStartlocation() {
+    public LocalDateTime getDateStartlocation() {
         return dateStartlocation;
     }
 
-    public void setDateStartlocation(String dateStartlocation) {
+    public void setDateStartlocation(LocalDateTime dateStartlocation) {
         this.dateStartlocation = dateStartlocation;
     }
 
-    public String getDateEndlocation() {
+    public LocalDateTime getDateEndlocation() {
         return dateEndlocation;
     }
 
-    public void setDateEndlocation(String dateEndlocation) {
+    public void setDateEndlocation(LocalDateTime dateEndlocation) {
         this.dateEndlocation = dateEndlocation;
     }
 
@@ -49,11 +60,11 @@ public class CarDTO {
         this.producer = producer;
     }
 
-    public int getValuePerDay() {
+    public float getValuePerDay() {
         return valuePerDay;
     }
 
-    public void setValuePerDay(int valuePerDay) {
+    public void setValuePerDay(float valuePerDay) {
         this.valuePerDay = valuePerDay;
     }
     
