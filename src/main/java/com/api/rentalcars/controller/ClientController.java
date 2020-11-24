@@ -91,9 +91,11 @@ public class ClientController {
         Rental rental = rentalService.save(rentalService.fromDTO(newRental));
         rental.setClient(client);
         rental.setCar(car);
+
         car.setClient(client);
 
         UriComponents uriComponents = builder.path(request.getRequestURI() + "/" + rental.getNum()).build();
+
         return ResponseEntity.created(uriComponents.toUri()).build();
     }
 

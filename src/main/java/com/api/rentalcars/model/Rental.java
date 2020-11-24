@@ -14,6 +14,7 @@ public class Rental {
 
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dateEndlocation;
+
     private float totalValue;
 
     private Client client;
@@ -66,6 +67,5 @@ public class Rental {
     public void setTotalValue(float totalValue) {
         this.totalValue = totalValue;
     }
-
 
 }
