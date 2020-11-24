@@ -3,6 +3,7 @@ package com.api.rentalcars.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+
 import javax.validation.Valid;
 
 import com.api.rentalcars.dto.CarDTO;
@@ -43,7 +44,11 @@ public class CarController {
     }
 
     @PostMapping()
+
     public ResponseEntity<Void> postCar(@Valid @RequestBody CarDTO newCar, HttpServletRequest request, UriComponentsBuilder builder) {
+
+    public ResponseEntity<Void> postCar(@RequestBody CarDTO newCar, HttpServletRequest request, UriComponentsBuilder builder) {
+
         Car car = carService.save(carService.fromDTO(newCar));
 
         UriComponents uriComponents = builder.path(request.getRequestURI() + "/" + car.getCode()).build();
