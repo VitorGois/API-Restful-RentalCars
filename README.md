@@ -1,5 +1,5 @@
 # RentalCars API
-Project designed to develop a RestFul Web API that allows you to manage vehicle reservations.
+Project to develop a RestFul Web API that allows you to manage vehicle reservations.
 
 ## About
 The project was developed during the OOP discipline in the 4th semester of graduation. The RestFul API provides the user with the possibility to rent a car.
