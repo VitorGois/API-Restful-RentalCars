@@ -87,6 +87,22 @@ public class RentalService {
 		}
 	}
 
+	public Boolean isAvailable(RentalDTO rentalDTO, Car car) {
+		for(Rental aux : getAllRentals()) {
+			if(aux.getCar().equals(car)) {
+				if(aux.getDateEndlocation().isBefore(rentalDTO.getDateStartlocation())) {
+					return true;
+				} else if(rentalDTO.getDateStartlocation().isBefore(aux.getDateStartlocation()) && rentalDTO.getDateEndlocation().isBefore(aux.getDateStartlocation())) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+		}
+
+		return true;
+	}
+
 	public int calculateIntervalPeriod(LocalDate start, LocalDate end) {
 		Period intervalPeriod = Period.between(start, end);
 

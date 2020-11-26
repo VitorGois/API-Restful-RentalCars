@@ -89,16 +89,19 @@ public class ClientController {
         Car car = carService.getCarByCode(codeCar);
 
         if(rentalService.verifyData(newRental.getDateStartlocation()) && rentalService.verifyData(newRental.getDateEndlocation())){
-            Rental rental = rentalService.save(rentalService.fromDTO(newRental));
-            rental.setClient(client);
-            rental.setCar(car);
-            rental.setTotalValue(rentalService.calculateTotalValue(rental));
-    
-            car.setClient(client);
-    
-            UriComponents uriComponents = builder.path(request.getRequestURI() + "/" + rental.getNum()).build();
-    
-            return ResponseEntity.created(uriComponents.toUri()).build();
+            if(rentalService.isAvailable(newRental, car)) {                
+                Rental rental = rentalService.save(rentalService.fromDTO(newRental));
+                rental.setClient(client);
+                rental.setCar(car);
+                rental.setTotalValue(rentalService.calculateTotalValue(rental));
+        
+                car.setClient(client);
+        
+                UriComponents uriComponents = builder.path(request.getRequestURI() + "/" + rental.getNum()).build();
+        
+                return ResponseEntity.created(uriComponents.toUri()).build();
+            }
+
         }
 
         return ResponseEntity.badRequest().build();
