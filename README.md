@@ -3,6 +3,17 @@ Project designed to develop a RestFul Web API that allows you to manage vehicle 
 
 ## About
 The project was developed during the OOP discipline in the 4th semester of graduation. The RestFul API provides the user with the possibility to rent a car.
+- The application allows:
+  - Manage Vehicles
+  - Manage Clients and list a Client's reservations
+  - Book a vehicle for a customer. The reservation will have:
+    - Has a number
+    - Customer must exist.
+    - Vehicle must exist.
+    - Start Date (Must be greater than the system date). It cannot start on Sunday.
+    - End Date (Must be greater than the Start date). There is no delivery on Sunday.
+    - The total of the reservation must be calculated.
+    - A vehicle can be booked several times, but only at different times / dates.
 
 ## Requirements
 - Postman
