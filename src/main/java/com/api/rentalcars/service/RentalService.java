@@ -80,7 +80,7 @@ public class RentalService {
 	public Boolean verifyData(LocalDate date) {
 		DayOfWeek d = date.getDayOfWeek();
 
-		if(d == DayOfWeek.SUNDAY) {
+		if(date.isBefore(LocalDate.now()) || d == DayOfWeek.SUNDAY) {
 			return false;
 		} else {
 			return true;
