@@ -84,7 +84,7 @@ public class ClientController {
     }
 
     @PostMapping("/{codeClient}/cars/{codeCar}")
-    public ResponseEntity<Void> postCarClient(@PathVariable int codeClient, @PathVariable int codeCar, @RequestBody RentalDTO newRental, HttpServletRequest request, UriComponentsBuilder builder) {
+    public ResponseEntity<String> postCarClient(@PathVariable int codeClient, @PathVariable int codeCar, @RequestBody RentalDTO newRental, HttpServletRequest request, UriComponentsBuilder builder) {
         Client client = clientService.getClientByCode(codeClient);
         Car car = carService.getCarByCode(codeCar);
 
@@ -96,6 +96,7 @@ public class ClientController {
                 rental.setTotalValue(rentalService.calculateTotalValue(rental));
         
                 car.setClient(client);
+                client.addCar(car);
         
                 UriComponents uriComponents = builder.path(request.getRequestURI() + "/" + rental.getNum()).build();
         
@@ -104,7 +105,7 @@ public class ClientController {
 
         }
 
-        return ResponseEntity.badRequest().build();
+        return ResponseEntity.badRequest().body("Car is already being rented in this period.");
         
     }
 

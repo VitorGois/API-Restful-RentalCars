@@ -1,6 +1,7 @@
 package com.api.rentalcars.repository;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import com.api.rentalcars.model.Car;
 
@@ -13,7 +14,7 @@ public class CarRepository {
     
     private static int count=1;
 
-    public ArrayList<Car> getAllCars() {
+    public List<Car> getAllCars() {
 		return cars;
 	}
 

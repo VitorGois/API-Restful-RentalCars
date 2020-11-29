@@ -4,7 +4,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Email;
 
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.br.CPF;
 
 public class ClientDTO {
     
@@ -13,7 +12,6 @@ public class ClientDTO {
     private String name;
 
     @NotBlank(message = "CPF is required")
-    @CPF(message = "CPF is invalid")
     private String cpf;
 
     @NotBlank(message = "Date of Birth is required")
