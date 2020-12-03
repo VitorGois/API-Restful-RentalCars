@@ -2,8 +2,6 @@ package com.api.rentalcars.model;
 
 import java.util.ArrayList;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 public class Client {
  
     private int code;
@@ -13,7 +11,6 @@ public class Client {
     private String email;
     private String address;
 
-    @JsonIgnore
     private ArrayList<Car> cars = new ArrayList<>();
 
     public String getName() {
