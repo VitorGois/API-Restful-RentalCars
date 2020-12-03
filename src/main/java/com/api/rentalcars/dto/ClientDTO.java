@@ -22,7 +22,7 @@ public class ClientDTO {
     private String email;
 
     @NotBlank(message = "Adress is required")
-    @Length(min = 10, max = 50, message = "Name must contain between 10 and 50 characters")
+    @Length(min = 10, max = 100, message = "Name must contain between 10 and 100 characters")
     private String address;
 
     public String getName() {

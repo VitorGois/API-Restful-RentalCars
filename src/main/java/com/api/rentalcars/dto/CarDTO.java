@@ -7,7 +7,7 @@ import org.hibernate.validator.constraints.Length;
 public class CarDTO {
 
     @NotBlank(message ="The license Plate is required" )
-    @Length (min = 7, max =7, message = "Your Plate must be 7 characters only format ABC1111")
+    @Length (min = 8, max =8, message = "Your Plate must be 7 characters only format ABC-1111")
     private String licensePlate;
   
     @NotBlank(message ="The Car's model is required" )
