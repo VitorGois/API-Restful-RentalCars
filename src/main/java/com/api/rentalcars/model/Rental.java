@@ -3,7 +3,6 @@ package com.api.rentalcars.model;
 import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class Rental {
     
@@ -17,10 +16,8 @@ public class Rental {
 
     private float totalValue;
 
-    @JsonIgnore
     private Client client;
     
-    @JsonIgnore
     private Car car;
 
     public int getNum() {
